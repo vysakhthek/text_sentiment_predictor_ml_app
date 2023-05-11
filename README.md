@@ -1,1 +1,1 @@
-# Text Sentiment Predictor ML App
+# Text Sentiment Predictor
