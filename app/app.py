@@ -37,7 +37,8 @@ def main():
                 st.success("Original Text")
                 st.write(raw_txt)
                 st.success("Prediction")
-                st.write(prediction )
+                emoji_icon = emotions_emoji_dict[prediction]
+                st.write("{}:{}".format(prediction,emoji_icon))
             with col2:
                 st.success("Prediction probability")
                 st.write(probability)
