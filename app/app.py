@@ -15,6 +15,8 @@ def prediction_probability(docx):
 	results = pipe_log_reg.predict_proba([docx])
 	return results
 
+emotions_emoji_dict = {"anger":"😠","disgust":"🤮", "fear":"😨😱", "happy":"🤗", "joy":"😂", "neutral":"😐", "sad":"😔", "sadness":"😔", "shame":"😳", "surprise":"😮"}
+
 def main():
     st.title("Text Sentiment Predictor App")
     menu = ["Home", "Monitor", "About"]
