@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import altair as alt
 
 
 
@@ -38,10 +39,19 @@ def main():
                 st.write(raw_txt)
                 st.success("Prediction")
                 emoji_icon = emotions_emoji_dict[prediction]
-                st.write("{}:{}".format(prediction,emoji_icon))
+                st.write("{} : {}".format(prediction,emoji_icon))
+                st.write("Confidence:{}".format(np.max(probability)))
+
             with col2:
                 st.success("Prediction probability")
-                st.write(probability)
+                # st.write(probability)
+                probability_df = pd.DataFrame(probability,columns=pipe_log_reg.classes_)
+                # st.write(probability_df.T)
+                probability_df_clean = probability_df.T.reset_index()
+                probability_df_clean.columns = ["emotions", "probability"]
+
+                fig = alt.Chart(probability_df_clean).mark_bar().encode(x='emotions', y='probability', color='emotions')
+                st.altair_chart(fig, use_container_width=True)
                 
  
     elif choice == "Monitor":
